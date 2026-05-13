@@ -32,8 +32,8 @@ const projects: Project[] = [
     ],
     tags: ['React', 'TypeScript', 'D3.js', 'Figma'],
     thumbnail: './projects/trending-preview.png',
-    videoUrl: './projects/trending-preview.png',
-    liveUrl: './projects/CCD-Baby-Trending-and-Analytics.webm',
+    videoUrl: './projects/CD-Baby-Trending-and-Analytics.webm',
+    liveUrl: './projects/CD-Baby-Trending-and-Analytics.webm',
   },
   {
     id: 'project-2',
