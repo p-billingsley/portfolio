@@ -19,10 +19,10 @@ interface Project {
 const projects: Project[] = [
   {
     id: 'project-1',
-    title: 'FinTrack Dashboard',
-    subtitle: 'Financial Analytics Platform',
+    title: 'Music Streaming Trending Reports',
+    subtitle: 'Analytics Dashboard for Apple Music and Spotify Streaming Trends',
     description:
-      'A comprehensive financial dashboard designed to help users visualize spending patterns, track investments, and manage budgets with intuitive data visualizations.',
+      'A comprehensive dashboard designed to help users visualize bulk data returned from nightly injestions through partner APIs, track investments, and manage budgets with intuitive data visualizations.',
     rationale:
       'Users struggled with existing tools that presented data in overwhelming, cluttered interfaces. I focused on progressive disclosure—showing key metrics upfront while allowing deep dives into detailed analytics.',
     outcomes: [
@@ -31,9 +31,9 @@ const projects: Project[] = [
       'NPS score improved from 32 to 67',
     ],
     tags: ['React', 'TypeScript', 'D3.js', 'Figma'],
-    thumbnail: '/projects/fintrack.jpg',
-    videoUrl: '',
-    liveUrl: '#',
+    thumbnail: './projects/trending-preview.png',
+    videoUrl: './projects/trending-preview.png',
+    liveUrl: './projects/CCD-Baby-Trending-and-Analytics.webm',
   },
   {
     id: 'project-2',
@@ -49,8 +49,8 @@ const projects: Project[] = [
       '4.8/5 user satisfaction rating',
     ],
     tags: ['Next.js', 'WebSocket', 'Canvas API', 'Tailwind'],
-    thumbnail: '/projects/collabspace.jpg',
-    videoUrl: '',
+    thumbnail: './projects/collabspace.jpg',
+    videoUrl: './projects/CD-Baby-Trending-and-Analytics.webm',
     liveUrl: '#',
   },
   {

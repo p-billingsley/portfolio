@@ -14,7 +14,7 @@ const hashPassword = (password: string): string => {
 
 // Set your password here - the hash will be compared
 // Default password: "preview2024" -> hash: "-1j8x8zy"
-const VALID_HASH = 'bhizll'
+const VALID_HASH = 'wy6a'
 const SESSION_KEY = 'portfolio_access'
 
 interface PasswordGateProps {

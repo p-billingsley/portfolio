@@ -6,6 +6,7 @@ __v0_jsx-dev-runtime.ts
 .v0-trash/
 .vercel/
 next.user-config.*
+.dist
 
 # Environment variables
 .env*.local
@@ -14,3 +15,5 @@ next.user-config.*
 node_modules
 .next/
 .DS_Store
+dist/
+package-lock.json
