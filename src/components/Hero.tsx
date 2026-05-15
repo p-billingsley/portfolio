@@ -1,5 +1,6 @@
 import { ArrowDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { DesignDevAnimation } from './DesignDevAnimation'
 
 export function Hero() {
   return (
@@ -24,7 +25,7 @@ export function Hero() {
                 Crafting Digital Experiences
               </h1>
               <p className="text-lg text-muted-foreground max-w-md leading-relaxed">
-                I design and build thoughtful interfaces that blend aesthetics with functionality. 
+                I design and build thoughtful interfaces that blend aesthetics with functionality.
                 Specializing in user-centered design and front-end development.
               </p>
             </div>
@@ -37,42 +38,11 @@ export function Hero() {
                 <a href="#contact">Contact Me</a>
               </Button>
             </div>
-
-            {/* Stats */}
-            <div className="flex gap-8 pt-4">
-              <div>
-                <p className="text-3xl font-bold text-foreground">5+</p>
-                <p className="text-xs text-muted-foreground font-mono uppercase tracking-wide">Years Exp</p>
-              </div>
-              <div className="w-px bg-border" />
-              <div>
-                <p className="text-3xl font-bold text-foreground">20+</p>
-                <p className="text-xs text-muted-foreground font-mono uppercase tracking-wide">Projects</p>
-              </div>
-              <div className="w-px bg-border" />
-              <div>
-                <p className="text-3xl font-bold text-foreground">10+</p>
-                <p className="text-xs text-muted-foreground font-mono uppercase tracking-wide">Clients</p>
-              </div>
-            </div>
           </div>
 
-          {/* Right Content - Geometric Visual */}
-          <div className="relative hidden lg:block">
-            <div className="relative w-full aspect-square max-w-md mx-auto">
-              {/* Layered geometric shapes */}
-              <div className="absolute inset-0 border-2 border-foreground" />
-              <div className="absolute inset-4 bg-card border border-border" />
-              <div className="absolute inset-8 flex items-center justify-center">
-                <div className="text-center space-y-2">
-                  <p className="font-mono text-xs text-muted-foreground">DESIGN</p>
-                  <p className="font-mono text-4xl font-bold text-accent">+</p>
-                  <p className="font-mono text-xs text-muted-foreground">CODE</p>
-                </div>
-              </div>
-              {/* Accent corner */}
-              <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-accent" />
-            </div>
+          {/* Right Content - Animated Visual */}
+          <div className="relative hidden lg:flex items-center justify-center">
+            <DesignDevAnimation />
           </div>
         </div>
 
