@@ -18,7 +18,7 @@ export function Hero() {
           <div className="space-y-8">
             <div className="space-y-4">
               <p className="font-mono text-xs text-accent tracking-widest uppercase">
-                UI/UX Design Engineer
+                UI/UX Design Engineering Leader
               </p>
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground text-balance">
                 Crafting Digital Experiences

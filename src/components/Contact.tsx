@@ -1,31 +1,23 @@
 import { Mail, Linkedin, Github, FileText } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
+const ep = ['patr', 'ick.b', 'illi', 'ngs', 'ley', '@gm', 'ail.', 'com']
+const email = ep.join('')
+
 const socialLinks = [
   {
     icon: Mail,
     label: 'Email',
-    href: 'mailto:hello@example.com',
-    value: 'hello@example.com',
+    href: `mailto:${email}`,
+    value: email,
   },
   {
     icon: Linkedin,
     label: 'LinkedIn',
-    href: 'https://linkedin.com/in/yourprofile',
-    value: '/in/yourprofile',
-  },
-  {
-    icon: Github,
-    label: 'GitHub',
-    href: 'https://github.com/yourusername',
-    value: '@yourusername',
-  },
-  {
-    icon: FileText,
-    label: 'Resume',
-    href: '/resume.pdf',
-    value: 'Download PDF',
-  },
+    href: 'https://linkedin.com/in/patrickbillingsley',
+    value: '/in/patrickbillingsley',
+  }
+
 ]
 
 export function Contact() {
@@ -51,7 +43,7 @@ export function Contact() {
             </p>
 
             <Button asChild size="lg" className="font-mono text-sm">
-              <a href="mailto:hello@example.com">Send an Email</a>
+              <a href={`mailto:${email}`}>Send an Email</a>
             </Button>
 
             {/* Geometric accent */}
