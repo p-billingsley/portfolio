@@ -7,10 +7,9 @@ export function Hero() {
     <section className="relative min-h-screen flex items-center justify-center pt-16">
       {/* Geometric Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 right-10 w-64 h-64 border border-border opacity-20" />
-        <div className="absolute bottom-40 left-10 w-32 h-32 bg-accent/10" />
-        <div className="absolute top-1/2 right-1/4 w-px h-48 bg-border" />
-        <div className="absolute bottom-20 right-20 w-24 h-24 border border-accent/30" />
+        <div className="absolute top-20 right-10 w-74 h-74 border border-accent/50 border-1 " />
+        <div className="absolute bottom-40 left-10 w-32 h-32 bg-accent/50" />
+        <div className="absolute bottom-20 right-20 w-24 h-24  border border-sky-500 border-1" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-20">

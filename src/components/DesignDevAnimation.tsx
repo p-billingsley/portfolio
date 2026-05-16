@@ -3,10 +3,6 @@ import { useId } from 'react'
 export function DesignDevAnimation() {
   const uid = useId().replace(/[^a-zA-Z0-9]/g, '')
 
-  // All translate values are 15% larger than the previous version.
-  // Each circle has its own float <g> wrapper that drifts on an independent
-  // short loop, composing with the main approach/merge animation.
-
   return (
     <div
       className="relative w-full select-none"
@@ -14,37 +10,47 @@ export function DesignDevAnimation() {
       aria-hidden="true"
     >
       <style>{`
-        /* Main position — approach / merge / depart */
-        .mb1-${uid}, .ml1-${uid} { animation: mb1-${uid} 9s ease-in-out infinite; will-change: transform; }
-        .mb2-${uid}, .ml2-${uid} { animation: mb2-${uid} 9s ease-in-out infinite; will-change: transform; }
-
-        /* Breathe on merged blob */
-        .mbw-${uid} { animation: mbw-${uid} 9s ease-in-out infinite; }
-
-        /* Independent floats — different durations so they never sync */
+        .mb1-${uid}, .ml1-${uid} { animation: mb1-${uid} 26s ease-in-out infinite; will-change: transform; }
+        .mb2-${uid}, .ml2-${uid} { animation: mb2-${uid} 26s ease-in-out infinite; will-change: transform; }
+        .mbw-${uid} { animation: mbw-${uid} 26s ease-in-out infinite; }
         .mf1-${uid} { animation: mf1-${uid} 3.7s ease-in-out infinite; }
         .mf2-${uid} { animation: mf2-${uid} 4.3s ease-in-out infinite; }
 
-        /* + fade */
-        .mbp-${uid} { animation: mbp-${uid} 9s ease-in-out infinite; }
-
+        /*
+          Two-merge cycle (26 s). Y position changes only inside the merge.
+          Merge 1: D1 (DESIGN TL / DEV BR) → rotate → D2 (DESIGN BL / DEV TR)
+          Merge 2: D2 → rotate back → D1
+        */
         @keyframes mb1-${uid} {
-          0%, 100%  { transform: translate(-110px, -70px); }
-          16%       { transform: translate( -29px, -23px); }
-          20%, 80%  { transform: translate( -40px, -35px); }
-          84%, 100% { transform: translate(-110px, -70px); }
+          0%,  10%  { transform: translate(-110px, -70px); }  /* D1 apart  */
+          16%       { transform: translate( -29px, -23px); }  /* close     */
+          18%, 27%  { transform: translate( -40px, -35px); }  /* D1 merged */
+          37%, 46%  { transform: translate( -40px,  35px); }  /* D2 merged */
+          50%, 60%  { transform: translate(-110px,  70px); }  /* D2 apart  */
+          66%       { transform: translate( -29px,  23px); }  /* close     */
+          68%, 77%  { transform: translate( -40px,  35px); }  /* D2 merged */
+          87%, 96%  { transform: translate( -40px, -35px); }  /* D1 merged */
+          100%      { transform: translate(-110px, -70px); }  /* D1 apart  */
         }
         @keyframes mb2-${uid} {
-          0%, 100%  { transform: translate( 110px,  70px); }
-          16%       { transform: translate(  29px,  23px); }
-          20%, 80%  { transform: translate(  40px,  35px); }
-          84%, 100% { transform: translate( 110px,  70px); }
+          0%,  10%  { transform: translate( 110px,  70px); }  /* D1 apart  */
+          16%       { transform: translate(  29px,  23px); }  /* close     */
+          18%, 27%  { transform: translate(  40px,  35px); }  /* D1 merged */
+          37%, 46%  { transform: translate(  40px, -35px); }  /* D2 merged */
+          50%, 60%  { transform: translate( 110px, -70px); }  /* D2 apart  */
+          66%       { transform: translate(  29px, -23px); }  /* close     */
+          68%, 77%  { transform: translate(  40px, -35px); }  /* D2 merged */
+          87%, 96%  { transform: translate(  40px,  35px); }  /* D1 merged */
+          100%      { transform: translate( 110px,  70px); }  /* D1 apart  */
         }
         @keyframes mbw-${uid} {
-          0%, 18%, 82%, 100% { transform: scale(1);     }
-          40%                { transform: scale(1.032); }
-          54%                { transform: scale(0.974); }
-          64%                { transform: scale(1.018); }
+          0%, 17%, 48%, 67%, 97%, 100% { transform: scale(1);     }
+          28%  { transform: scale(1.032); }
+          38%  { transform: scale(0.974); }
+          43%  { transform: scale(1.018); }
+          78%  { transform: scale(1.032); }
+          88%  { transform: scale(0.974); }
+          93%  { transform: scale(1.018); }
         }
         @keyframes mf1-${uid} {
           0%   { transform: translate(  0px,   0px); }
@@ -61,11 +67,6 @@ export function DesignDevAnimation() {
           65%  { transform: translate(  3px,  -6px); }
           85%  { transform: translate( -5px,  -2px); }
           100% { transform: translate(  0px,   0px); }
-        }
-        @keyframes mbp-${uid} {
-          0%, 20%   { opacity: 0; }
-          28%, 80%  { opacity: 1; }
-          84%, 100% { opacity: 0; }
         }
       `}</style>
 
@@ -97,7 +98,6 @@ export function DesignDevAnimation() {
           </radialGradient>
         </defs>
 
-        {/* Metaball blobs — float wrappers compose with main translate */}
         <g
           className={`mbw-${uid}`}
           filter={`url(#mb-${uid})`}
@@ -111,7 +111,6 @@ export function DesignDevAnimation() {
           </g>
         </g>
 
-        {/* DESIGN label — float + main position */}
         <g className={`mf1-${uid}`}>
           <text
             className={`ml1-${uid}`}
@@ -128,7 +127,6 @@ export function DesignDevAnimation() {
           </text>
         </g>
 
-        {/* DEVELOPMENT label — float + main position */}
         <g className={`mf2-${uid}`}>
           <text
             className={`ml2-${uid}`}
@@ -144,20 +142,6 @@ export function DesignDevAnimation() {
             DEVELOPMENT
           </text>
         </g>
-
-        {/* + — fixed at junction, fades in when merged */}
-        <text
-          className={`mbp-${uid}`}
-          x="190" y="152"
-          textAnchor="middle"
-          dominantBaseline="middle"
-          fontFamily="'Space Mono', monospace"
-          fontSize="32"
-          fontWeight="700"
-          fill="oklch(0.1 0 0)"
-        >
-          +
-        </text>
       </svg>
     </div>
   )
