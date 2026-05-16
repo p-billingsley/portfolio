@@ -80,7 +80,7 @@ const projects: Project[] = [
     title: 'Video Creator Promotion Funnel',
     subtitle: 'First stage interface for signing up for video creation and promotion services',
     description:
-      '',
+      'This is a placeholder description for the Video Creator Promotion Funnel project.',
     rationale:
       '',
     outcomes: [
