@@ -25,9 +25,9 @@ export const projects: Project[] = [
     title: 'Music Streaming Trending Reports',
     subtitle: 'Self Service Analytics Dashboard for Artists and Labels',
     description:
-      'A comprehensive dashboard designed to help users visualize bulk data returned from nightly injestions through partner APIs. The dashboard features interactive animated charts and deeply customizable filters, to enable data-driven decision making for music industry professionals.',
+      'A comprehensive frontend focused dashboard designed to help users visualize bulk data returned from nightly injestions through partner APIs. The dashboard features interactive animated charts and deeply customizable filters, to enable data-driven decision making for music industry professionals.',
     rationale:
-      'Users were only able to gain access to this data through multiple logins at third party vendors, Apple Music, iTunes, Spotify, and Amazon Music. Users struggled with existing tools that presented data in overwhelming, inconsistent ways. I focused on progressive disclosure, showing key metrics upfront while allowing deep dives.  This was achieved through a combination of clean, modular design and interactive elements that let users explore the data at their own desired level and display as much or little as they wanted.',
+    'Users were only able to gain access to this data through multiple logins at third party vendors, Apple Music, iTunes, Spotify, and Amazon Music. Users struggled with existing tools that presented data in overwhelming, inconsistent ways. I focused on progressive disclosure, showing key metrics upfront while allowing deep dives.  This was achieved through a combination of clean, modular design and interactive elements that let users explore the data at their own desired level and display as much or little as they wanted. The dashboard would remember user preferences from the last session to create a more efficient, personalized experience.  The mapping visualizations proved to be one of the most popular features receiving high praise from customers in feedback surveys, and I worked closely with the data team to optimize the underlying data structures and API endpoints to ensure fast load times and smooth interactions even with large datasets.  I optimized the charts rendering to use different fidelity levels based on screen size and zoom level while always supporting screen readers with hidden tabular data and accessible labels and controls.', 
     outcomes: [
       'Provided access to millions of data points updated nightly across 4 major streaming platforms in a single dashboard',
       'Customer satisfaction rating of 4.9/5 based on user feedback surveys with many users citing the easy to use interface and mapping visualizations as key benefits',
@@ -71,8 +71,8 @@ export const projects: Project[] = [
       'Improved user satisfaction scores by 25% within the first six months of launch, as the dashboard provided a more transparent and intuitive way to manage music release submissions.',
     ],
     tags: ['JavaScript','SCSS','JQuery','ASP.NET MVC','Accessibility','Component Library','Figma'],
-    thumbnail: '/projects/title-overview-full.png',
-    videoUrl: '/projects/title-overview-w-mobile.mp4',
+    thumbnail: './projects/title-overview-full.png',
+    videoUrl: './projects/title-overview-w-mobile.mp4',
     liveUrl: 'https://cdbaby.com/',
     liveAnnotation: 'NOTE:The live version of this project is only visible with signup of a music title, but you can view a video walkthrough by clicking the thumbnail or play button.',
   },
@@ -81,15 +81,15 @@ export const projects: Project[] = [
     title: 'Video Creator Promotion Funnel',
     subtitle: 'First stage interface for signing up for video creation and promotion services',
     description:
-      'This is a placeholder description for the Video Creator Promotion Funnel project.',
+      'This sequence was designed as a teaser to attract users to new video creation and promotion services provided through a third party partner as a soft launch.  The design is optimized for engagement, using compelling visuals and clear calls to action.  This was initially promoted via email campaign and direct links. After launch the "Make One Now" function was activated and it was linked directly from the main dashboard to drive conversions.',
     rationale:
-      '',
+      'The opening animation shows an example of the product in action under both Spotify Canvas and Apple Music Motion Art platforms.  The call to action points to clear pricing structure and explanation of the service offerings, and the final screen provides a direct link to begin.  The subsequent screens which are not shown provide access to the artists\' current released music catalog to select a title or track to create a video for, and then an embed with creation tools to submit the necessary information and assets to complete the video creation process, checkout, and access the product.',
     outcomes: [
-      '',
-      '',
+      '800% increase in user engagement with the video creation and promotion services within the first quarter of soft launch, as measured by click through rates.',
+      'Achieved a 200% conversion rate uptick from the promotional funnel to actual service sign-ups within the first quarter after final launch , demonstrating the effectiveness of the teaser design in driving user interest and action.',
       '',
     ],
-    tags: ['VS Code API', 'TypeScript', 'Node.js', 'Design Systems'],
+    tags: ['SCSS','Javascript', 'CSS Animation', 'ASP.NET MVC', 'Storybook Components', 'Design Systems'],
     thumbnail: './projects/video-creator.png',
     videoUrl: './projects/video-creator-2.mp4',
     liveUrl: 'https://cdbaby.com/',
@@ -100,16 +100,16 @@ export const projects: Project[] = [
     title: 'Sign Up Onboarding Flow',
     subtitle: 'Initial customer experience creating an account',
     description:
-      'This is a placeholder description for the Sign Up Onboarding Flow project.',
+      'This was a massive overhaul of the sign upflow for new customers to reduce friction in the account creation process as well as encourage product selection and checkout.  The previous process presented the prospective customer with a lenthy form and required the entry of personal bank account payment information before they could even start. This was an opportunity to clean up our 2fa system which had been built in the shadows wihout design UX considerations and user agreements which were sprinkled throughout the app and needed to be centralized.  In addition this area was modernized and added to our design system and component library to create a more cohesive experience and set the stage for future improvements to the onboarding process and welcome funnel.',
     rationale:
-      '',
+      'This design focuses on simplification, collecting only essentials needed to activate.  It presents a clear path to completion and deposits new users into a welcome funnel to choose their first release type along with explanation of add on features.  The happy path is optimized to place items in the cart for initial purchase, but the customer can opt out and self explore from the dashboard if they choose. The new design offers simplified agreements for acceptance to create an account and log in, and 2fa screens maintain a consistent look and feel with improved UX. There is an underlying tone of encoragement towards selecting items for purchase while always offering access to support resources via chat or help center.',
     outcomes: [
-      '',
-      '',
-      '',
+      '50% reduction in abandoned sign up flows within the first three months of launch, as users were able to complete the account creation process with less friction and confusion.',
+      '15% increase in conversion from sign up to first purchase within the first quarter, as the new onboarding flow effectively guided users towards exploring and purchasing products after creating their account.',
+      '23% increase in customer satisfaction scores related to the onboarding process within the first six months of launch, as users reported a more positive initial experience with the product and appreciated the clearer guidance and reduced friction.',
     ],
-    tags: ['SCSS', 'Javascript', 'Storybook Components','ASP.NET MVC', 'Figma', 'Design Systems'],
-    thumbnail: '/projects/signup-1.png',
+    tags: ['SCSS', 'Accessibility', 'Javascript', 'Storybook Components','ASP.NET MVC', 'Figma', 'Design Systems'],
+    thumbnail: './projects/signup-1.png',
     carouselImages: [
       './projects/signup-1.png',
       './projects/signup-2.png',
