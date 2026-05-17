@@ -37,7 +37,7 @@ export function About() {
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
                 I&apos;m a UI/UX Design Engineer passionate about creating accessible, 
-                pixel-perfect user interfaces that blend thoughtful pragmatic design with robust engineering.
+              user interfaces that blend thoughtful pragmatic design with robust engineering.
               </p>
               <p>
                 My work lies at the intersection of design and development, creating experiences 
