@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { ExternalLink, Play, X } from 'lucide-react'
+import { ExternalLink, Play, ArrowLeft } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 
-interface Project {
+export interface Project {
   id: string
   title: string
   subtitle: string
@@ -17,7 +17,7 @@ interface Project {
   liveAnnotation?: string
 }
 
-const projects: Project[] = [
+export const projects: Project[] = [
   {
     id: 'project-1',
     title: 'Music Streaming Trending Reports',
@@ -54,7 +54,6 @@ const projects: Project[] = [
     videoUrl: './projects/social-media-monetization.mp4',
     liveUrl: 'https://cdbaby.com/',
     liveAnnotation: 'NOTE:The live version of this project is only visible with signup of a music title, but you can view a video walkthrough by clicking the thumbnail or play button.',
-  
   },
   {
     id: 'project-3',
@@ -64,7 +63,6 @@ const projects: Project[] = [
       'Control center for managing the submission process of a music release, providing real-time status updates, actionable insights, and direct access to support resources. The dashboard is designed to streamline the submission workflow, reduce user anxiety by providing clear next steps, and improve overall satisfaction with the release process.',
     rationale:
       'The design of the overall product purposely allows users to complete data entry in non-linear manner, skipping steps as needed, therefore  mechanism for easily identifying outstanding tasks was necessary. In addition, users were often confused about the status of their music release submissions, leading to a high volume of support inquiries and frustration. The dashboard was designed to provide transparency into the submission process, and offer clear guidance on next steps in a heriarchical manner using collapsing panels with alert icons to indicate sections and subsections with remaining tasks and links to the specific forms. ',
-
     outcomes: [
       'Reduced customer support inquiries related to submission status by 35% within the first two months of launch, as users were able to easily track their release progress and identify outstanding tasks without needing to contact support.',
       'Achieved a 20% increase in on-time release submissions within the first quarter, as users were better able to manage their submission timelines and stay informed about any issues that needed to be addressed.',
@@ -74,9 +72,10 @@ const projects: Project[] = [
     thumbnail: '/projects/title-overview-full.png',
     videoUrl: '/projects/title-overview-w-mobile.mp4',
     liveUrl: 'https://cdbaby.com/',
-    liveAnnotation: 'NOTE:The live version of this project is only visible with signup of a music title, but you can view a video walkthrough by clicking the thumbnail or play button.',  },
+    liveAnnotation: 'NOTE:The live version of this project is only visible with signup of a music title, but you can view a video walkthrough by clicking the thumbnail or play button.',
+  },
   {
-    id: 'project-4',
+    id: 'project-5',
     title: 'Video Creator Promotion Funnel',
     subtitle: 'First stage interface for signing up for video creation and promotion services',
     description:
@@ -94,15 +93,31 @@ const projects: Project[] = [
     liveUrl: 'https://cdbaby.com/',
     liveAnnotation: 'NOTE:The live version of this project is only visible with signup of a music title, but you can view a video walkthrough by clicking the thumbnail or play button.',
   },
+    {
+    id: 'project-4',
+    title: 'Sign Up Onboarding Flow',
+    subtitle: 'Initial customer experience creating an account',
+    description:
+      'This is a placeholder description for the Sign Up Onboarding Flow project.',
+    rationale:
+      '',
+    outcomes: [
+      '',
+      '',
+      '',
+    ],
+    tags: ['Blah', 'Blah', 'Figma', 'Design Systems'],
+    thumbnail: '/projects/video-creator.png',
+    videoUrl: '',
+    liveUrl: 'https://members.cdbaby.com/',
+    liveAnnotation: 'This flow is visible by signing up for a new account on the live site, but you can also view a video walkthrough by clicking the thumbnail.',
+  },
 ]
 
-export function Projects() {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
-
+export function Projects({ onProjectOpen }: { onProjectOpen: (id: string) => void }) {
   return (
     <section id="projects" className="py-24 lg:py-32 border-t border-border">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        {/* Section Header */}
         <div className="space-y-6 mb-16">
           <div className="space-y-2">
             <p className="font-mono text-xs text-accent tracking-widest uppercase">
@@ -113,31 +128,22 @@ export function Projects() {
             </h2>
           </div>
           <p className="text-muted-foreground max-w-2xl leading-relaxed">
-            A collection of projects showcasing my approach to solving design challenges 
+            A collection of projects showcasing my approach to solving design challenges
             through research, iteration, and thoughtful implementation.
           </p>
         </div>
 
-        {/* Projects Grid */}
         <div className="grid md:grid-cols-2 gap-6">
           {projects.map((project, index) => (
             <ProjectCard
               key={project.id}
               project={project}
               index={index}
-              onClick={() => setSelectedProject(project)}
+              onClick={() => onProjectOpen(project.id)}
             />
           ))}
         </div>
       </div>
-
-      {/* Project Modal */}
-      {selectedProject && (
-        <ProjectModal
-          project={selectedProject}
-          onClose={() => setSelectedProject(null)}
-        />
-      )}
     </section>
   )
 }
@@ -156,91 +162,69 @@ function ProjectCard({
       className="group relative bg-card border border-border hover:border-accent/50 transition-colors cursor-pointer"
       onClick={onClick}
     >
-      {/* Project Number */}
-      <div className="absolute top-4 right-4 font-mono text-xs text-muted-foreground">
+      <div className="absolute top-3 right-3 font-mono text-xs text-muted-foreground">
         {String(index + 1).padStart(2, '0')}
       </div>
 
-      {/* Thumbnail */}
-      <div className="relative aspect-auto bg-secondary overflow-hidden">
+      <div className="relative bg-secondary overflow-hidden">
         <img
           src={project.thumbnail}
           alt={`${project.title} screenshot`}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover aspect-video"
         />
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors pointer-events-none" />
-        {project.videoUrl && (
-          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-            <div className="w-12 h-12 bg-accent flex items-center justify-center">
-              <Play size={20} className="text-accent-foreground ml-1" />
-            </div>
-          </div>
-        )}
       </div>
 
-      {/* Content */}
-      <div className="p-6 space-y-4">
-        <div>
-          <p className="font-mono text-xs text-accent mb-1">{project.subtitle}</p>
-          <h3 className="text-xl font-bold text-foreground group-hover:text-accent transition-colors">
-            {project.title}
-          </h3>
-        </div>
-        <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
+      <div className="p-4 space-y-1.5">
+        <p className="font-mono text-xs text-accent">{project.subtitle}</p>
+        <h3 className="text-lg font-bold text-foreground group-hover:text-accent transition-colors leading-snug">
+          {project.title}
+        </h3>
+        <p className="text-sm text-muted-foreground line-clamp-1 leading-relaxed">
           {project.description}
         </p>
-        <div className="flex flex-wrap gap-2">
-          {project.tags.slice(0, 3).map((tag) => (
-            <Badge
-              key={tag}
-              variant="secondary"
-              className="font-mono text-xs bg-secondary text-secondary-foreground"
-            >
-              {tag}
-            </Badge>
-          ))}
-        </div>
       </div>
     </article>
   )
 }
 
-function ProjectModal({
-  project,
-  onClose,
+export function ProjectDetail({
+  projectId,
+  onBack,
 }: {
-  project: Project
-  onClose: () => void
+  projectId: string
+  onBack: () => void
 }) {
   const [showVideo, setShowVideo] = useState(false)
+  const project = projects.find((p) => p.id === projectId)
+  if (!project) return null
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/90 backdrop-blur-sm"
-      onClick={onClose}
-    >
-      <div
-        className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-card border border-border"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Close Button */}
+    <section id={project.id} className="py-24 lg:py-32 border-t border-border">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <button
-          className="absolute top-4 right-4 z-10 p-2 bg-background border border-border hover:border-accent transition-colors"
-          onClick={onClose}
-          aria-label="Close modal"
+          onClick={onBack}
+          className="flex items-center gap-2 mb-10 font-mono text-xs text-muted-foreground hover:text-accent transition-colors"
         >
-          <X size={20} />
+          <ArrowLeft size={14} />
+          Back to Projects
         </button>
+        <div className="space-y-8">
+        <div className="space-y-2 ">
+            <p className="font-mono text-xs text-accent tracking-widest uppercase">
+              {project.subtitle}
+            </p>
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-5">
+              {project.title}
+            </h3>
+          </div>
 
-        {/* Media Section */}
-        <div className="relative aspect-auto bg-secondary">
+        </div>
+
+
+        <div className="relative bg-secondary mb-10 max-w-[700px] ml-[10px] float-right border border-border hover:border-accent/50 transition-colors">
           {showVideo && project.videoUrl ? (
-            <video
-              src={project.videoUrl}
-              controls
-              autoPlay
-              className="w-full h-full object-cover"
-            >
+            <video src={project.videoUrl} controls autoPlay className="w-full aspect-square">
               Your browser does not support the video tag.
             </video>
           ) : (
@@ -248,7 +232,7 @@ function ProjectModal({
               <img
                 src={project.thumbnail}
                 alt={`${project.title} screenshot`}
-                className="w-full h-full object-cover"
+                className="w-full object-cover aspect-square"
               />
               {project.videoUrl && (
                 <button
@@ -265,68 +249,45 @@ function ProjectModal({
           )}
         </div>
 
-        {/* Content */}
-        <div className="p-8 space-y-8">
-          {/* Header */}
-          <div className="space-y-2">
-            <p className="font-mono text-xs text-accent tracking-widest uppercase">
-              {project.subtitle}
-            </p>
-            <h3 className="text-2xl md:text-3xl font-bold text-foreground">
-              {project.title}
-            </h3>
-          </div>
-
-          {/* Tags */}
-          <div className="flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <Badge
-                key={tag}
-                variant="outline"
-                className="font-mono text-xs border-border"
-              >
-                {tag}
-              </Badge>
-            ))}
-          </div>
-
-          {/* Description */}
+        <div className="space-y-8">
           <div className="space-y-4">
             <h4 className="font-mono text-xs text-foreground tracking-widest uppercase">
               Overview
             </h4>
-            <p className="text-muted-foreground leading-relaxed">
-              {project.description}
-            </p>
+            <p className="text-muted-foreground leading-relaxed">{project.description}</p>
           </div>
 
-          {/* Design Rationale */}
-          <div className="space-y-4 p-6 bg-secondary/50 border-l-2 border-accent">
-            <h4 className="font-mono text-xs text-foreground tracking-widest uppercase">
-              Design Rationale
-            </h4>
-            <p className="text-muted-foreground leading-relaxed">
-              {project.rationale}
-            </p>
-          </div>
+          {project.rationale && (
+            <div className="space-y-4 p-6 bg-secondary/50 border-l-2 border-accent">
+              <h4 className="font-mono text-xs text-foreground tracking-widest uppercase">
+                Design Rationale
+              </h4>
+              <p className="text-muted-foreground leading-relaxed">{project.rationale}</p>
+            </div>
+          )}
 
-          {/* Outcomes */}
-          <div className="space-y-4">
-            <h4 className="font-mono text-xs text-foreground tracking-widest uppercase">
-              Key Outcomes
-            </h4>
-            <ul className="space-y-3">
-              {project.outcomes.map((outcome, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="w-1.5 h-1.5 bg-accent mt-2 flex-shrink-0" />
-                  <span className="text-muted-foreground">{outcome}</span>
-                </li>
-              ))}
-            </ul>
+          {project.outcomes.some((o) => o) && (
+            <div className="space-y-4">
+              <h4 className="font-mono text-xs text-foreground tracking-widest uppercase">
+                Key Outcomes
+              </h4>
+              <ul className="space-y-3">
+                {project.outcomes.filter((o) => o).map((outcome, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 bg-accent mt-2 flex-shrink-0" />
+                    <span className="text-muted-foreground">{outcome}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          <div className="flex flex-wrap gap-2">
+            {project.tags.map((tag) => (
+              <Badge key={tag} variant="outline" className="font-mono text-xs border-border">
+                {tag}
+              </Badge>
+            ))}
           </div>
-
-          {/* CTA */}
-          
           {project.liveUrl && (
             <div className="pt-4 border-t border-border">
               <Button asChild className="font-mono text-sm">
@@ -336,15 +297,14 @@ function ProjectModal({
                 </a>
               </Button>
               {project.liveAnnotation && (
-                 <h4 className="font-mono text-xs text-foreground mt-4">
-              {project.liveAnnotation}
-            </h4> 
-          )}
-             
+                <p className="font-mono text-xs text-foreground mt-4">
+                  {project.liveAnnotation}
+                </p>
+              )}
             </div>
           )}
         </div>
       </div>
-    </div>
+    </section>
   )
 }
