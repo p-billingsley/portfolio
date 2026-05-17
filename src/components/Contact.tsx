@@ -22,7 +22,7 @@ const socialLinks = [
 
 export function Contact() {
   return (
-    <section id="contact" className="py-24 lg:py-32 border-t border-border">
+    <section id="contact" className="py-24 lg:py-32 border-t border-border min-h-[90vh]">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Left - CTA */}

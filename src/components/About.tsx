@@ -72,12 +72,18 @@ export function About() {
             <div className="p-6 bg-card border border-border space-y-3">
               <p className="font-mono text-xs text-muted-foreground">RECENT EXPERIENCE</p>
               <div>
-                <p className="font-semibold text-foreground">Senior UI/UX Designer</p>
-                <p className="text-sm text-muted-foreground">Tech Company Inc. — 2022-Present</p>
+                <p className="font-semibold text-foreground">Frontend Engineering Manager / Design Systems Lead</p>
+                <p className="text-sm text-muted-foreground">CD Baby — 2016-2025</p>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Led design system development and front-end implementation for enterprise 
-                SaaS products, improving user engagement by 40%.
+                Provided hands-on design and technical leadership for distributed teams, guiding interaction design, UI architecture, and frontend platform evolution across applications serving millions.
+              </p>
+              <div>
+                <p className="font-semibold text-foreground">Lead UI Developer / Senior Frontend Developer</p>
+                <p className="text-sm text-muted-foreground">CD Baby — 2012-2016</p>
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Owned end-to-end UI design and development across multiple customer-facing properties, defining navigation patterns, layout systems, and interaction models.
               </p>
             </div>
           </div>

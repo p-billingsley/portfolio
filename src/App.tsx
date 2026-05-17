@@ -42,7 +42,7 @@ export default function App() {
 
   return (
     <PasswordGate>
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen">
         <Header />
         <main>
           {activeProjectId ? (

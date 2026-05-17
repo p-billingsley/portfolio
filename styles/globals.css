@@ -25,12 +25,12 @@
   --input: oklch(0.92 0 0);
   --ring: oklch(0.65 0.2 130);
   --radius: 0rem;
-   --heading-background: oklch(82.8% 0.111 230.318);
+   --heading-background: rgb(160, 203, 229);
 }
 
 .dark {
   /* Bold & Geometric Theme - Dark mode */
-  --background: oklch(0.23 0.05 325.33);
+  --background: oklch(59.681% 0.00156 285.707);
   --foreground: oklch(0.98 0 0);
   --card: oklch(0.12 0 0);
   --card-foreground: oklch(0.98 0 0);
@@ -86,11 +86,20 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply text-foreground antialiased;
   }
   html {
     scroll-behavior: smooth;
   }
+}
+
+/* Page background gradients */
+body {
+  background: linear-gradient(135deg,  rgb(230, 242, 243) 10%,rgb(160, 203, 229) 100%);
+ min-height: 100vh;
+}
+.dark body {
+  background: linear-gradient(135deg, oklch(25.716% 0.07972 273.48) 0%, rgb(30, 56, 47) 100%);
 }
 
 /* Custom scrollbar for dark theme */

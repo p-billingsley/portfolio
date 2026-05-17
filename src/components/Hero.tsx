@@ -4,7 +4,7 @@ import { DesignDevAnimation } from './DesignDevAnimation'
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-16">
+    <section className="relative min-h-screen flex items-center justify-center pt-16 mt-[-65px]">
       {/* Geometric Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 right-10 w-74 h-74 border border-accent/50 border-1 " />

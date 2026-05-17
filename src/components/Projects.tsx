@@ -1,7 +1,8 @@
-import { useState } from 'react'
-import { ExternalLink, Play, ArrowLeft } from 'lucide-react'
+import { useState, useEffect, useRef } from 'react'
+import { ExternalLink, Play, ArrowLeft, ChevronLeft, ChevronRight, Pause } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 
 export interface Project {
   id: string
@@ -13,6 +14,7 @@ export interface Project {
   tags: string[]
   thumbnail: string
   videoUrl?: string
+  carouselImages?: string[]
   liveUrl?: string
   liveAnnotation?: string
 }
@@ -75,7 +77,7 @@ export const projects: Project[] = [
     liveAnnotation: 'NOTE:The live version of this project is only visible with signup of a music title, but you can view a video walkthrough by clicking the thumbnail or play button.',
   },
   {
-    id: 'project-5',
+    id: 'project-4',
     title: 'Video Creator Promotion Funnel',
     subtitle: 'First stage interface for signing up for video creation and promotion services',
     description:
@@ -94,7 +96,7 @@ export const projects: Project[] = [
     liveAnnotation: 'NOTE:The live version of this project is only visible with signup of a music title, but you can view a video walkthrough by clicking the thumbnail or play button.',
   },
     {
-    id: 'project-4',
+    id: 'project-5',
     title: 'Sign Up Onboarding Flow',
     subtitle: 'Initial customer experience creating an account',
     description:
@@ -106,11 +108,22 @@ export const projects: Project[] = [
       '',
       '',
     ],
-    tags: ['Blah', 'Blah', 'Figma', 'Design Systems'],
-    thumbnail: '/projects/video-creator.png',
-    videoUrl: '',
-    liveUrl: 'https://members.cdbaby.com/',
-    liveAnnotation: 'This flow is visible by signing up for a new account on the live site, but you can also view a video walkthrough by clicking the thumbnail.',
+    tags: ['SCSS', 'Javascript', 'Storybook Components','ASP.NET MVC', 'Figma', 'Design Systems'],
+    thumbnail: '/projects/signup-1.png',
+    carouselImages: [
+      '/projects/signup-1.png',
+      '/projects/signup-2.png',
+      '/projects/signup-3.png',
+      '/projects/signup-4.png',
+      '/projects/signup-5.png',
+      '/projects/signup-6.png',
+      '/projects/signup-7.png',
+      '/projects/signup-8.png',
+      '/projects/signup-9.png',
+      '/projects/signup-10.png',
+    ],
+    liveUrl: 'https://auth.cdbaby.com/Account/SignUp',
+    liveAnnotation: 'This flow is visible by signing up for a new account on the live site.',
   },
 ]
 
@@ -170,7 +183,7 @@ function ProjectCard({
         <img
           src={project.thumbnail}
           alt={`${project.title} screenshot`}
-          className="w-full h-full object-cover aspect-video"
+          className="w-full h-full object-cover aspect-square"
         />
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors pointer-events-none" />
       </div>
@@ -185,6 +198,92 @@ function ProjectCard({
         </p>
       </div>
     </article>
+  )
+}
+
+function ImageCarousel({ images, alt }: { images: string[]; alt: string }) {
+  const [index, setIndex] = useState(0)
+  const [isPlaying, setIsPlaying] = useState(true)
+  const [isHovered, setIsHovered] = useState(false)
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+
+  const shouldAdvance = isPlaying && !isHovered
+
+  useEffect(() => {
+    if (!shouldAdvance) {
+      if (intervalRef.current) clearInterval(intervalRef.current)
+      return
+    }
+    intervalRef.current = setInterval(() => {
+      setIndex((i) => (i + 1) % images.length)
+    }, 4000)
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current)
+    }
+  }, [shouldAdvance, images.length])
+
+  function prev() {
+    setIndex((i) => (i - 1 + images.length) % images.length)
+  }
+
+  function next() {
+    setIndex((i) => (i + 1) % images.length)
+  }
+
+  return (
+    <div
+      className="relative bg-secondary border border-border hover:border-accent/50 transition-colors group"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <img
+        src={images[index]}
+        alt={`${alt} – slide ${index + 1} of ${images.length}`}
+        className="w-full object-contain"
+      />
+
+      {/* Prev arrow */}
+      <button
+        className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-background/70 border border-border flex items-center justify-center opacity-0 group-hover:opacity-100 hover:border-accent/50 transition-all"
+        onClick={prev}
+        aria-label="Previous slide"
+      >
+        <ChevronLeft size={16} />
+      </button>
+
+      {/* Next arrow */}
+      <button
+        className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-background/70 border border-border flex items-center justify-center opacity-0 group-hover:opacity-100 hover:border-accent/50 transition-all"
+        onClick={next}
+        aria-label="Next slide"
+      >
+        <ChevronRight size={16} />
+      </button>
+
+      {/* Controls bar: play/pause + dots */}
+      <div className="absolute bottom-0 left-0 right-0 flex items-center gap-3 px-4 py-3 bg-background/70 backdrop-blur-sm">
+        <button
+          onClick={() => setIsPlaying((p) => !p)}
+          className="text-foreground hover:text-accent transition-colors flex-shrink-0"
+          aria-label={isPlaying ? 'Pause slideshow' : 'Play slideshow'}
+        >
+          {isPlaying && !isHovered ? <Pause size={13} /> : <Play size={13} />}
+        </button>
+        <div className="flex gap-2 flex-wrap">
+          {images.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setIndex(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              className={cn(
+                'w-1.5 h-1.5 transition-colors',
+                i === index ? 'bg-accent' : 'bg-foreground/30 hover:bg-foreground/60'
+              )}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
   )
 }
 
@@ -222,30 +321,36 @@ export function ProjectDetail({
         </div>
 
 
-        <div className="relative bg-secondary mb-10 max-w-[700px] ml-[10px] float-right border border-border hover:border-accent/50 transition-colors">
-          {showVideo && project.videoUrl ? (
-            <video src={project.videoUrl} controls autoPlay className="w-full aspect-square">
-              Your browser does not support the video tag.
-            </video>
+        <div className="mb-10 max-w-[600px] ml-[10px] float-right">
+          {project.carouselImages?.length ? (
+            <ImageCarousel images={project.carouselImages} alt={project.title} />
           ) : (
-            <>
-              <img
-                src={project.thumbnail}
-                alt={`${project.title} screenshot`}
-                className="w-full object-cover aspect-square"
-              />
-              {project.videoUrl && (
-                <button
-                  className="absolute inset-0 flex items-center justify-center bg-black/0 hover:bg-black/40 transition-colors"
-                  onClick={() => setShowVideo(true)}
-                  aria-label="Play video walkthrough"
-                >
-                  <div className="w-16 h-16 bg-accent flex items-center justify-center">
-                    <Play size={28} className="text-accent-foreground ml-1" />
-                  </div>
-                </button>
+            <div className="relative bg-secondary border border-border hover:border-accent/50 transition-colors">
+              {showVideo && project.videoUrl ? (
+                <video src={project.videoUrl} controls autoPlay className="w-full aspect-square">
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <>
+                  <img
+                    src={project.thumbnail}
+                    alt={`${project.title} screenshot`}
+                    className="w-full object-cover aspect-square"
+                  />
+                  {project.videoUrl && (
+                    <button
+                      className="absolute inset-0 flex items-center justify-center bg-black/0 hover:bg-black/40 transition-colors"
+                      onClick={() => setShowVideo(true)}
+                      aria-label="Play video walkthrough"
+                    >
+                      <div className="w-16 h-16 bg-accent flex items-center justify-center">
+                        <Play size={28} className="text-accent-foreground ml-1" />
+                      </div>
+                    </button>
+                  )}
+                </>
               )}
-            </>
+            </div>
           )}
         </div>
 
