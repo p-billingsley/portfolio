@@ -300,7 +300,7 @@ export function ProjectDetail({
 
   return (
     <section id={project.id} className="py-24 lg:py-32 border-t border-border">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 max-lg:max-w-[600px]">
         <button
           onClick={onBack}
           className="flex items-center gap-2 mb-10 font-mono text-xs text-muted-foreground hover:text-accent transition-colors"
@@ -308,106 +308,109 @@ export function ProjectDetail({
           <ArrowLeft size={14} />
           Back to Projects
         </button>
-        <div className="space-y-8">
-        <div className="space-y-2 ">
-            <p className="font-mono text-xs text-accent tracking-widest uppercase">
-              {project.subtitle}
-            </p>
-            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-5">
-              {project.title}
-            </h3>
-          </div>
 
+        <div className="space-y-2 mb-8">
+          <p className="font-mono text-xs text-accent tracking-widest uppercase">
+            {project.subtitle}
+          </p>
+          <h3 className="text-2xl md:text-3xl font-bold text-foreground">
+            {project.title}
+          </h3>
         </div>
 
-
-        <div className="mb-10 max-w-[600px] ml-[10px] float-right">
-          {project.carouselImages?.length ? (
-            <ImageCarousel images={project.carouselImages} alt={project.title} />
-          ) : (
-            <div className="relative bg-secondary border border-border hover:border-accent/50 transition-colors">
-              {showVideo && project.videoUrl ? (
-                <video src={project.videoUrl} controls autoPlay className="w-full aspect-square">
-                  Your browser does not support the video tag.
-                </video>
-              ) : (
-                <>
-                  <img
-                    src={project.thumbnail}
-                    alt={`${project.title} screenshot`}
-                    className="w-full object-cover aspect-square"
-                  />
-                  {project.videoUrl && (
-                    <button
-                      className="group absolute inset-0 flex items-center justify-center bg-black/0 hover:bg-black/40 transition-colors"
-                      onClick={() => setShowVideo(true)}
-                      aria-label="Play video walkthrough"
-                    >
-                      <div className="w-16 h-16 bg-accent flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                        <Play size={28} className="text-accent-foreground ml-1" />
-                      </div>
-                    </button>
-                  )}
-                </>
-              )}
-            </div>
-          )}
-        </div>
-
-        <div className="space-y-8">
-          <div className="space-y-4">
-            <h4 className="font-mono text-xs text-foreground tracking-widest uppercase">
-              Overview
-            </h4>
-            <p className="text-muted-foreground leading-relaxed">{project.description}</p>
-          </div>
-
-          {project.rationale && (
-            <div className="space-y-4 p-6 bg-secondary/50 border-l-2 border-accent">
-              <h4 className="font-mono text-xs text-foreground tracking-widest uppercase">
-                Design Rationale
-              </h4>
-              <p className="text-muted-foreground leading-relaxed">{project.rationale}</p>
-            </div>
-          )}
-
-          {project.outcomes.some((o) => o) && (
+        <div className="grid lg:grid-cols-[1fr_minmax(0,600px)] gap-y-8">
+          {/* Text column — below image on mobile, left on desktop */}
+          <div className="space-y-8 order-2 lg:order-1 lg:pr-[10px]">
             <div className="space-y-4">
               <h4 className="font-mono text-xs text-foreground tracking-widest uppercase">
-                Key Outcomes
+                Overview
               </h4>
-              <ul className="space-y-3">
-                {project.outcomes.filter((o) => o).map((outcome, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <span className="w-1.5 h-1.5 bg-accent mt-2 flex-shrink-0" />
-                    <span className="text-muted-foreground">{outcome}</span>
-                  </li>
-                ))}
-              </ul>
+              <p className="text-muted-foreground leading-relaxed">{project.description}</p>
             </div>
-          )}
-          <div className="flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <Badge key={tag} variant="outline" className="font-mono text-xs border-border">
-                {tag}
-              </Badge>
-            ))}
+
+            {project.rationale && (
+              <div className="space-y-4 p-6 bg-secondary/50 border-l-2 border-accent lg:-mr-[10px]">
+                <h4 className="font-mono text-xs text-foreground tracking-widest uppercase">
+                  Design Rationale
+                </h4>
+                <p className="text-muted-foreground leading-relaxed">{project.rationale}</p>
+              </div>
+            )}
+
+            {project.outcomes.some((o) => o) && (
+              <div className="space-y-4">
+                <h4 className="font-mono text-xs text-foreground tracking-widest uppercase">
+                  Key Outcomes
+                </h4>
+                <ul className="space-y-3">
+                  {project.outcomes.filter((o) => o).map((outcome, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <span className="w-1.5 h-1.5 bg-accent mt-2 flex-shrink-0" />
+                      <span className="text-muted-foreground">{outcome}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            <div className="flex flex-wrap gap-2">
+              {project.tags.map((tag) => (
+                <Badge key={tag} variant="outline" className="font-mono text-xs border-border">
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+
+            {project.liveUrl && (
+              <div className="pt-4 border-t border-border">
+                <Button asChild className="font-mono text-sm">
+                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                    View Live Project
+                    <ExternalLink size={14} className="ml-2" />
+                  </a>
+                </Button>
+                {project.liveAnnotation && (
+                  <p className="font-mono text-xs text-foreground mt-4">
+                    {project.liveAnnotation}
+                  </p>
+                )}
+              </div>
+            )}
           </div>
-          {project.liveUrl && (
-            <div className="pt-4 border-t border-border">
-              <Button asChild className="font-mono text-sm">
-                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                  View Live Project
-                  <ExternalLink size={14} className="ml-2" />
-                </a>
-              </Button>
-              {project.liveAnnotation && (
-                <p className="font-mono text-xs text-foreground mt-4">
-                  {project.liveAnnotation}
-                </p>
-              )}
-            </div>
-          )}
+
+          {/* Image column — above text on mobile, right on desktop */}
+          <div className="order-1 lg:order-2"  >
+            {project.carouselImages?.length ? (
+              <ImageCarousel images={project.carouselImages} alt={project.title} />
+            ) : (
+              <div className="relative bg-secondary border border-border hover:border-accent/50 transition-colors">
+                {showVideo && project.videoUrl ? (
+                  <video src={project.videoUrl} controls autoPlay className="w-full aspect-square">
+                    Your browser does not support the video tag.
+                  </video>
+                ) : (
+                  <>
+                    <img
+                      src={project.thumbnail}
+                      alt={`${project.title} screenshot`}
+                      className="w-full object-cover aspect-square"
+                    />
+                    {project.videoUrl && (
+                      <button
+                        className="group absolute inset-0 flex items-center justify-center bg-black/0 hover:bg-black/40 transition-colors"
+                        onClick={() => setShowVideo(true)}
+                        aria-label="Play video walkthrough"
+                      >
+                        <div className="w-16 h-16 bg-accent flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                          <Play size={28} className="text-accent-foreground ml-1" />
+                        </div>
+                      </button>
+                    )}
+                  </>
+                )}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </section>

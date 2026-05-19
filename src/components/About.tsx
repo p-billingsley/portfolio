@@ -60,7 +60,7 @@ export function About() {
                   <Badge
                     key={skill}
                     variant="outline"
-                    className="font-mono text-xs px-3 py-1 border-border hover:border-accent hover:text-accent transition-colors"
+                    className="font-mono text-xs px-3 py-1 border-border text-muted-foreground"
                   >
                     {skill}
                   </Badge>

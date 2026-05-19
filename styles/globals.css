@@ -16,8 +16,8 @@
   --secondary: oklch(0.90 0 0);
   --secondary-foreground: oklch(0.08 0 0);
   --muted: oklch(0.88 0 0);
-  --muted-foreground: oklch(0.45 0 0);
-  --accent: oklch(0.63 0.2 131.02);
+  --muted-foreground: oklch(32.897% 0.00004 271.152);
+  --accent: rgb(102, 167, 0);
   --accent-foreground: oklch(0.98 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.98 0 0);
@@ -99,7 +99,7 @@ body {
  min-height: 100vh;
 }
 .dark body {
-  background: linear-gradient(135deg, rgb(62, 26, 68) 10%,rgb(0, 0, 0) 100%);
+  background: linear-gradient(90deg, rgb(62, 26, 68) 10%,rgb(30, 12, 33) 100%);
 }
 
 /* Custom scrollbar for dark theme */
