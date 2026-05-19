@@ -4,16 +4,16 @@ import { DesignDevAnimation } from './DesignDevAnimation'
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-16 mt-[-65px]">
+    <section className="relative min-h-screen flex items-center justify-center pt-16 mt-[-64px] mb-[64px]">
       {/* Geometric Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 right-10 w-104 h-104 border border-accent/50 border-1 rotate-24 " />
-        <div className="absolute bottom-40 left-10 w-32 h-32 bg-accent/50 rotate-57" />
-        <div className="absolute bottom-20 right-20 w-72 h-72  border border-sky-500 border-1 rotate-10" />
+        <div className="hidden md:block absolute top-20 right-10 w-104 h-104 border border-accent/50 border-1 rotate-24" />
+        <div className="absolute bottom-40 left-10 w-20 h-20 md:w-32 md:h-32 bg-accent/50 rotate-45" />
+        <div className="hidden md:block absolute bottom-20 right-20 w-72 h-72 border border-sky-500 border-1 rotate-10" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-top">
           {/* Left Content */}
           <div className="space-y-8">
             <div className="space-y-4">

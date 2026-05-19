@@ -16,6 +16,9 @@ const hashPassword = (password: string): string => {
 // Default password: "preview2024" -> hash: "-1j8x8zy"
 const VALID_HASH = 'wy6a'
 const SESSION_KEY = 'portfolio_access'
+// Share as: https://p-billingsley.github.io/portfolio/?access=vip
+const VIP_PARAM = 'access'
+const VIP_TOKEN = 'vip'
 
 interface PasswordGateProps {
   children: React.ReactNode
@@ -28,11 +31,23 @@ export function PasswordGate({ children }: PasswordGateProps) {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // Check if already authenticated in this session
     const sessionAuth = sessionStorage.getItem(SESSION_KEY)
     if (sessionAuth === 'true') {
       setIsAuthenticated(true)
+      setIsLoading(false)
+      return
     }
+
+    const params = new URLSearchParams(window.location.search)
+    if (params.get(VIP_PARAM) === VIP_TOKEN) {
+      sessionStorage.setItem(SESSION_KEY, 'true')
+      setIsAuthenticated(true)
+      // Strip the token from the URL so it doesn't linger in history
+      params.delete(VIP_PARAM)
+      const clean = params.size ? `?${params}` : ''
+      window.history.replaceState(null, '', window.location.pathname + clean + window.location.hash)
+    }
+
     setIsLoading(false)
   }, [])
 

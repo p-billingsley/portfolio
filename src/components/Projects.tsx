@@ -41,7 +41,7 @@ export const projects: Project[] = [
   },
   {
     id: 'project-2',
-    title: 'CDB Social Media Monetization Funnel',
+    title: 'Social Media Monetization Funnel',
     subtitle: 'Interface for signing up for monetization service options',
     description:
       'A service selection interface that adapts to the user\'s experience level, surfacing help desk links and instructional videos for newcomers while keeping the path clear for veterans. Each offering is distinctly presented with its characteristics and relevant legal disclaimers, and the system is architected to accommodate new services as the catalog grows.',
@@ -339,11 +339,11 @@ export function ProjectDetail({
                   />
                   {project.videoUrl && (
                     <button
-                      className="absolute inset-0 flex items-center justify-center bg-black/0 hover:bg-black/40 transition-colors"
+                      className="group absolute inset-0 flex items-center justify-center bg-black/0 hover:bg-black/40 transition-colors"
                       onClick={() => setShowVideo(true)}
                       aria-label="Play video walkthrough"
                     >
-                      <div className="w-16 h-16 bg-accent flex items-center justify-center">
+                      <div className="w-16 h-16 bg-accent flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                         <Play size={28} className="text-accent-foreground ml-1" />
                       </div>
                     </button>
