@@ -36,7 +36,7 @@ export function About() {
           <div className="space-y-8">
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                I&apos;m a UI/UX Design Engineer passionate about creating accessible, 
+                I&apos;m a UI/UX Design Engineer passionate about creating accessible, intuitive
               user interfaces that blend thoughtful pragmatic design with robust engineering.
               </p>
               <p>

@@ -68,15 +68,15 @@ export function Contact() {
                   rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                   className="group flex items-center justify-between p-4 bg-card border border-border hover:border-accent/50 transition-colors"
                 >
-                  <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 flex items-center justify-center bg-secondary group-hover:bg-accent/10 transition-colors">
+                  <div className="flex items-center gap-4 min-w-0">
+                    <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center bg-secondary group-hover:bg-accent/10 transition-colors">
                       <link.icon size={18} className="text-foreground group-hover:text-accent transition-colors" />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <p className="font-medium text-foreground group-hover:text-accent transition-colors">
                         {link.label}
                       </p>
-                      <p className="text-sm text-muted-foreground font-mono">
+                      <p className="text-sm text-muted-foreground font-mono break-all">
                         {link.value}
                       </p>
                     </div>
