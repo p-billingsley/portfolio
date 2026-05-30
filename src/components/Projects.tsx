@@ -35,7 +35,7 @@ export const projects: Project[] = [
     ],
     tags: ['JavaScript','SCSS','JQuery','ASP.NET MVC', 'AJAX','Chart.js','Leaflet', 'OpenStreetMap', 'Figma'],
     thumbnail: './projects/trending-preview.png',
-    videoUrl: './projects/CD-Baby-Trending-and-Analytics.webm',
+    videoUrl: './projects/CD-Baby-Trending-and-Analytics-blur.mp4',
     liveUrl: 'https://cdbaby.com/',
     liveAnnotation: 'NOTE:The live version of this project is only visible with a paid release of a music title, but you can view a video walkthrough of the dashboard in action by clicking the thumbnail or play button.',
   },
