@@ -34,7 +34,7 @@ export function About() {
             {/* Headshot */}
             <div className="flex justify-center">
               <img
-                src="/projects/Headshot.png"
+                src="./projects/Headshot.png"
                 alt="Patrick Billingsley"
                 className="w-full object-cover"
                 style={{ maxWidth: '325px' }}
