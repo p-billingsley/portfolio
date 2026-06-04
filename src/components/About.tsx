@@ -1,14 +1,14 @@
 import { Badge } from '@/components/ui/badge'
 
 const skills = [
-  'Figma',
+  'Design Systems',
   'React',
   'TypeScript',
   'Tailwind CSS',
   'Next.js',
-  'User Research',
+  'Figma',
   'Prototyping',
-  'Design Systems',
+  'User Research'
 ]
 
 export function About() {
@@ -30,6 +30,17 @@ export function About() {
               <div className="w-16 h-px bg-accent" />
               <div className="w-4 h-4 border border-accent" />
             </div>
+
+            {/* Headshot */}
+            <div className="flex justify-center">
+              <img
+                src="/projects/Headshot.png"
+                alt="Patrick Billingsley"
+                className="w-full object-cover"
+                style={{ maxWidth: '325px' }}
+              />
+            </div>
+
           </div>
 
           {/* Right - Content */}
