@@ -1,5 +1,8 @@
 import { useState, useEffect, type FormEvent } from 'react'
 
+const ep = ['patr', 'ick.b', 'illi', 'ngs', 'ley', '@gm', 'ail.', 'com']
+const email = ep.join('')
+
 // Simple hash function for client-side comparison
 // Note: This is NOT cryptographically secure - it's a deterrent, not true security
 const hashPassword = (password: string): string => {
@@ -154,7 +157,10 @@ export function PasswordGate({ children }: PasswordGateProps) {
 
           {/* Footer note */}
           <p className="mt-8 text-xs text-muted-foreground text-center">
-            Contact me directly if you need access credentials.
+            <a href={`mailto:${email}`} className="hover:text-accent transition-colors font-bold">
+              Contact me directly
+            </a>{' '}
+            if you need access credentials.
           </p>
         </div>
 
